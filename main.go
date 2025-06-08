@@ -90,7 +90,8 @@ func handlePythonExecution(ctx context.Context, request mcp.CallToolRequest) (*m
 	}
 	shArgs := []string{}
 
-	// If modules are provided, install them
+	// If modules are provided, install them.
+	// TODO: Protect against arbitrary code execution.
 	if len(modules) > 0 {
 		shArgs = append(shArgs, "python", "-m", "pip", "install", "--quiet")
 		shArgs = append(shArgs, modules...)
